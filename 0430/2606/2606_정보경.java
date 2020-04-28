@@ -6,46 +6,42 @@ public class no2606_virus_BFS {
 	static int v,e;
 	static int[][] map;
 	static boolean[] visited;
-	static int answer;
-	
-	public static void bfs(int start, int[][] map, boolean[] visited, int answer) {
-		
-		Queue<Integer> q = new LinkedList<Integer>();
-		q.add(start);
+	static int answer=0;
+
+	public static void dfs(int start) {
 		visited[start] = true;
-		
-		while(!q.isEmpty()) {
-			int temp = q.poll();
-			for(int i=0; i<map.length; i++) {
-				if(!visited[map[i][1]] && temp==map[i][0]) {
-					visited[map[i][0]] = true;
-					q.add(map[i][1]);
-					answer++;
-				}
+
+
+		for(int i=1; i<map.length;i++) {
+			if( map[start][i] == 1 && !visited[i] ) {
+				answer++;
+				dfs(i);
 			}
 		}
-		System.out.println(answer);
+
 	}
-	
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
+
 		v = sc.nextInt();
 		e = sc.nextInt();
-		
-		map = new int[e][2];
+
+		map = new int[v+1][v+1];
 		visited = new boolean[v+1];
-		answer = 0;
-		
-		for(int i=0; i<e; i++) {
-			for(int j=0; j<2; j++) {
-				map[i][j] = sc.nextInt();
-				
-			}
+
+		int temp1, temp2;
+
+		for(int i=1; i<=e; i++) {
+			temp1 = sc.nextInt();
+			temp2 = sc.nextInt();
+			map[temp1][temp2] = map[temp2][temp1] = 1;
+
 		}
-	
-		bfs(1, map, visited, 0);
-		
+
+		dfs(1);
+		System.out.println(answer);
+
 	}
 
 }
