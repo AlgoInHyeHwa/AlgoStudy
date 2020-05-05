@@ -37,7 +37,7 @@ void dbfs(int x, int y){
 }
 
 vector<string> solution(vector<vector<int>> macaron) {
-    vector<string> answer(6);
+    vector<string> answer;
     for(int i = 0; i < max_size; i++){
         vector<bool> temp(max_size, false);
         visited.push_back(temp);
@@ -66,7 +66,60 @@ vector<string> solution(vector<vector<int>> macaron) {
                     }
                 }
             }
+            int max_cnt = 0;
+            for (int a = 0; a < max_size; a++) {
+                if (map[a].size() < 2)
+                    continue;
+                for (int b = 1; b < map[a].size() - 1; b++) {
+                    cnt = 0;
+                    bfs(macaron[a][0], b);
+                    if (cnt > 2) {
+                        dbfs(macaron[a][0], b);
+                        for (int j = 1; j < max_size; j++) {
+                            int tmp = 0;
+                            for (int k = 1; k < map[j].size(); k++)
+                                if (map[j][k] == 0)
+                                    tmp++;
+                            if (tmp > 0) {
+                                int idx = 1;
+                                while (1) {
+                                    if (idx == map[j].size())
+                                        break;
+                                    if (map[j][idx] == 0)
+                                        map[j].erase(map[j].begin() + idx);
+                                    else
+                                        idx++;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
+
+    for (int i = 0; i < max_size; i++) {
+        if (map[i].size() < max_size) {
+            for (int j = map[i].size() - 1; j < max_size; j++)
+                map[i].push_back(0);
+        }
+    }
+    for (int i = max_size - 1; i > 0; i--) {
+        string temp;
+        for (int j = 1; j < max_size; j++) {
+            temp += to_string(map[j][i]);
+        }
+        answer.push_back(temp);
+    }
     return answer;
+}
+
+int main() {
+    vector<vector<int>> macaron = { {1, 1}, {2, 1}, {1, 2}, {3, 3}, {6, 4}, {3, 1}, {3, 3}, {3, 3}, {3, 4}, {2, 1} };
+    vector<string> answer = solution(macaron);
+
+    for (int i = 0; i < answer.size(); i++) {
+        cout << answer[i] << endl;
+    }
+    return 0;
 }
