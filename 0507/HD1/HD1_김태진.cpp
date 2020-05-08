@@ -37,10 +37,7 @@ vector<int> solution(vector<string> purchase) {
             temp *= 10;
             temp += purchase[i][j] - '0';
         }
-        int min = (temp2 > 15) ? temp2 - 15 : 0;
-        for(int i = min; i < temp2; i++)
-            cal[i] += temp;
-        int max = (temp2 > 365) ? 365 : temp2 + 15;
+        int max = (temp2 > 365) ? 365 : temp2 + 30;
         for(int i = temp2; i < max; i++)
             cal[i] += temp;
     }
