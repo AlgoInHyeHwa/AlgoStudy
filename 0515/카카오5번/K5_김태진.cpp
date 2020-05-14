@@ -30,6 +30,7 @@ bool bfs(int a, int b, vector<int> v) {
         if (bfs(a, b, v))
             return true;
     }
+    v2[v[v.size() - 1]] = false;
     return false; 
 }
 
