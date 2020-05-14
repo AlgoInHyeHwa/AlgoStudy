@@ -4,8 +4,8 @@ public class Pb02 {
     static int solution(String[] ip_addrs, String[] langs, int[] scores){
         int result  = ip_addrs.length;
         int count   = 0;
-        boolean check = false;      // 
-
+//        boolean check = false;
+        
         ArrayList<Integer> arrayList = new ArrayList<>();
 
         /* C, C#, C++ 은 모두 같은 언어군 */
@@ -14,15 +14,20 @@ public class Pb02 {
                 langs[i] = "C";
             }
         }
+        
+        /* test */
+        for(int i = 1; i < ip_addrs.length; i++){
+            
+            for(int j = 0; j < i; j++){
+                if(ip_addrs[i] == ip_addrs[j]);                                
+            }
+        }
 
         /* ip 동일 -> arrayList 요소 0 추가 */
         for(int i = 0; i < ip_addrs.length - 1; i++){
             for(int j = i+1; j < ip_addrs.length; j++){
                 if(ip_addrs[i] == ip_addrs[j]){
-                    if(check == false){
-                        check = true;
                         count++;
-                    }
                 }
             }
         }
@@ -48,7 +53,7 @@ public class Pb02 {
             }
         }
         arrayList.add(count);
-
+        
         for(int i = 0; i < arrayList.size(); i++){
             System.out.println(arrayList.get(i));
         }
