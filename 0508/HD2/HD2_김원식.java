@@ -4,7 +4,7 @@ public class Pb02 {
     static int solution(String[] ip_addrs, String[] langs, int[] scores){
         int result  = ip_addrs.length;
         int count   = 0;
-        boolean check = false;
+        boolean check = false;      // 
 
         ArrayList<Integer> arrayList = new ArrayList<>();
 
