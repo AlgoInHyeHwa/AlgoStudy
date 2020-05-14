@@ -46,7 +46,7 @@ bool fpath(int a, int b) {
 }
 
 bool solution(int n, vector<vector<int>> path, vector<vector<int>> order) {
-    v1.resize(n);
+    v1.resize(n, vector<int>(0, 0));
     v2.resize(n, false);
     N = n;
     for (int i = 0; i < path.size(); i++) {
