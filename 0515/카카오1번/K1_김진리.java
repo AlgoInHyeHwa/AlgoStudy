@@ -45,7 +45,7 @@ public class kakao1 {
 				
 			}
 			else if(numbers[i] == 2 || numbers[i] == 5 || numbers[i] == 8 || numbers[i] == 0) {
-				Mx = 1;				
+				Mx = 1;					
 				if(numbers[i] == 2) {					
 					My = 0;
 					//왼손과의 거리 
@@ -58,12 +58,27 @@ public class kakao1 {
 					
 					if((Math.abs(x)+Math.abs(y)) < (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "L";
+						Lx = Mx;
+						Ly = My;
 					}
 					else if((Math.abs(x)+Math.abs(y)) > (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "R";
+						Rx = Mx;
+						Ry = My;
 					}
 					else {
-						answer = answer + hand;
+						if(hand == "left") {
+							Lx = Mx;
+							Ly = My;
+							
+							answer = answer + "L";
+						}
+						else if(hand == "right") {
+							Rx = Mx;
+							Ry = My;
+							
+							answer = answer + "R";
+						}
 					}	
 					
 				}
@@ -80,12 +95,27 @@ public class kakao1 {
 					
 					if((Math.abs(x)+Math.abs(y)) < (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "L";
+						Lx = Mx;
+						Ly = My;
 					}
 					else if((Math.abs(x)+Math.abs(y)) > (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "R";
+						Rx = Mx;
+						Ry = My;
 					}
 					else {
-						answer = answer + hand;
+						if(hand == "left") {
+							Lx = Mx;
+							Ly = My;
+							
+							answer = answer + "L";
+						}
+						else if(hand == "right") {
+							Rx = Mx;
+							Ry = My;
+							
+							answer = answer + "R";
+						}
 					}	
 					
 				}
@@ -102,12 +132,28 @@ public class kakao1 {
 					
 					if((Math.abs(x)+Math.abs(y)) < (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "L";
+						Lx = Mx;
+						Ly = My;
 					}
 					else if((Math.abs(x)+Math.abs(y)) > (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "R";
+						Rx = Mx;
+						Ry = My;
+						
 					}
 					else {
-						answer = answer + hand;
+						if(hand == "left") {
+							Lx = Mx;
+							Ly = My;
+							
+							answer = answer + "L";
+						}
+						else if(hand == "right") {
+							Rx = Mx;
+							Ry = My;
+							
+							answer = answer + "R";
+						}
 					}	
 					
 				}
@@ -120,16 +166,32 @@ public class kakao1 {
 					//오른손과의 거리 
 					x1 = Mx - Rx;
 					y1 = My - Ry;
+				
 					
 					if((Math.abs(x)+Math.abs(y)) < (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "L";
+						Lx = Mx;
+						Ly = My;
 					}
 					else if((Math.abs(x)+Math.abs(y)) > (Math.abs(x1)+Math.abs(y1))) {
 						answer = answer + "R";
+						Rx = Mx;
+						Ry = My;
 					}
 					else {
 						
-						answer = answer + hand.charAt(0);
+						if(hand == "left") {
+							Lx = Mx;
+							Ly = My;
+							
+							answer = answer + "L";
+						}
+						else if(hand == "right") {
+							Rx = Mx;
+							Ry = My;
+							
+							answer = answer + "R";
+						}
 					}	
 					
 				}
