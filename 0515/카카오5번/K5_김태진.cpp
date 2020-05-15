@@ -7,11 +7,11 @@ using namespace std;
 
 vector<vector<int>> v1;
 vector<int> v2;
-int N;
 
 void findpath(int here) {
     for (int there = 1; there < v1.size(); there++) {
         while (v1[here][there] > 0) {
+            cout << here << " " << there << endl;
             v1[here][there]--;
             v1[there][here]--;
             findpath(there);
