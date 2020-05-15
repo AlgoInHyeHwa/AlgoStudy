@@ -6,58 +6,29 @@
 using namespace std;
 
 vector<vector<int>> v1;
-vector<bool> v2;
+vector<int> v2;
 int N;
 
-bool check(int n) {
-    for (int i = 0; i < v2.size(); i++) {
-        if (v2[i] == n)
-            return false;
+void findpath(int here) {
+    for (int there = 1; there < v1.size(); there++) {
+        while (v1[here][there] > 0) {
+            v1[here][there]--;
+            v1[there][here]--;
+            findpath(there);
+        }
     }
-    return true;
-}
-
-bool bfs(int a, int b, vector<int> v) {
-    v2[v[v.size() - 1]] = true;
-    for (int i = 0; i < v1[v[v.size() - 1]].size(); i++) {
-        if (v2[v1[v[v.size() - 1]][i]])
-            continue;
-        v.push_back(v1[v[v.size() - 1]][i]);
-        if (v[v.size() - 1] == b)
-            return true;
-        if (v[v.size() - 1] == a)
-            return false;
-        if (bfs(a, b, v))
-            return true;
-    }
-    v2[v[v.size() - 1]] = false;
-    return false; 
-}
-
-bool fpath(int a, int b) {
-    v2[0] = true;
-    for (int i = 0; i < v1[0].size(); i++) {
-        vector<int> tmp;
-        tmp.push_back(v1[0][i]);
-        if (bfs(a, b, tmp))
-            return true;
-    }
-    return false;
+    v2.push_back(here);
 }
 
 bool solution(int n, vector<vector<int>> path, vector<vector<int>> order) {
-    v1.resize(n, vector<int>(0, 0));
-    v2.resize(n, false);
-    N = n;
-    for (int i = 0; i < path.size(); i++) {
-        v1[path[i][0]].push_back(path[i][1]);
-        v1[path[i][1]].push_back(path[i][0]);
-    }
-    for (int i = 0; i < order.size(); i++) {
-        cout << order[i][0] << " " << order[i][1] << endl;
-        if (fpath(order[i][0], order[i][1]))
-            return false;
-    }
+    v1 = vector<vector<int>>(n, vector<int>(n, 0));
+    v2.clear();
+    for (int i = 0; i < path.size(); i++)
+        v1[path[i][0]][path[i][1]] = v1[path[i][1]][path[i][0]] = 1;
+    findpath(0);
+    for (int i : v2)
+        cout << i << " ";
+    cout << endl;
     return true;
 }
 
