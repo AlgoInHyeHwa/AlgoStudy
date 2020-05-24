@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.Stack;
 
+/* 단어 뒤집기 */
 public class chap02 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
