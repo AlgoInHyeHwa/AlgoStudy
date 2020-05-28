@@ -32,8 +32,6 @@ public class Pb03 {
         }
 
         /* arr1, arr2를 이용하여 합집합 교집합 */
-//        ArrayList<String> union = new ArrayList<>();
-//        ArrayList<String> intersection = new ArrayList<>();
         int intersection = 0;
         int union = 0;
 
