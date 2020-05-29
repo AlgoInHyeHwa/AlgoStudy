@@ -1,6 +1,4 @@
-package test.programmers;
-
-public class frineds4block {
+class Solution {
 	static char[][] map;
 
 	public static int checkFourPosition(char[][] board) {
@@ -48,6 +46,7 @@ public class frineds4block {
 
 	public static int solution(int m, int n, String[] board) {
 		int sum = 0;
+		int temp;
 		map = new char[m][n];
 		
 		for (int i = 0; i < board.length; i++) {
@@ -56,35 +55,15 @@ public class frineds4block {
 			}
 		}
 		
-//		sum +=checkFourPosition(map);
-//		dropPosition(map);
-//		sum +=checkFourPosition(map);
-//		dropPosition(map);
-		
 		while(true) {
-			
-			if(checkFourPosition(map)==0) {
+			temp = checkFourPosition(map);
+			if(temp == 0) {
 				break;
 			}
-			sum += checkFourPosition(map);
+			sum += temp;
 			dropPosition(map);
 		}
-		
-		for (int i = 0; i < map.length; i++) {
-			for (int j = 0; j < map[0].length; j++) {
-				System.out.print(map[i][j]);
-			}
-			System.out.println();
-		}
+
 		return sum;
-	}
-
-	public static void main(String[] args) {
-		int m = 4;
-		int n = 5;
-		String[] board = { "CCBDE", "AAADE", "AAABF", "CCBBF" };
-		int answer = solution(m, n, board);
-		System.out.print(answer);
-	}
-
+}
 }
