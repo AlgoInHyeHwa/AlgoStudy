@@ -2,17 +2,16 @@ package test.programmers;
 
 public class frineds4block {
 	static char[][] map;
-	static int answer = 0;
 
-	public static boolean checkFourPosition(char[][] board) {
+	public static int checkFourPosition(char[][] board) {
 		boolean[][] check = new boolean[board.length][board[0].length];
 		
-		boolean fourPositions = false;
+		int count = 0;
 		
 		for (int i = 0; i < board.length - 1; i++) {
 			for (int j = 0; j < board[0].length - 1; j++) {
 				if (board[i][j] == board[i + 1][j] && board[i][j] == board[i][j + 1]
-						&& board[i][j] == board[i + 1][j + 1]) {
+						&& board[i][j] == board[i + 1][j + 1] && board[i][j] != '1') {
 					check[i][j] = check[i + 1][j] = check[i][j + 1] = check[i + 1][j + 1] = true;
 				}
 
@@ -23,12 +22,12 @@ public class frineds4block {
 			for (int j = 0; j < board[0].length; j++) {
 				if (check[i][j] == true) {
 					board[i][j] = '1';
-					answer++;
+					count++;
 				}
 			}
 		}
 		
-		return fourPositions;
+		return count;
 	}
 
 	public static void dropPosition(char[][] board) {
@@ -48,31 +47,36 @@ public class frineds4block {
 	}
 
 	public static int solution(int m, int n, String[] board) {
-
+		int sum = 0;
 		map = new char[m][n];
-
+		
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < n; j++) {
 				map[i][j] = board[i].charAt(j);
 			}
 		}
-
+		
+//		sum +=checkFourPosition(map);
+//		dropPosition(map);
+//		sum +=checkFourPosition(map);
+//		dropPosition(map);
+		
 		while(true) {
-			boolean flag = checkFourPosition(map);
-			dropPosition(map);
 			
-			if(flag==false) {
+			if(checkFourPosition(map)==0) {
 				break;
 			}
+			sum += checkFourPosition(map);
+			dropPosition(map);
 		}
-
+		
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[0].length; j++) {
 				System.out.print(map[i][j]);
 			}
 			System.out.println();
 		}
-		return answer;
+		return sum;
 	}
 
 	public static void main(String[] args) {
