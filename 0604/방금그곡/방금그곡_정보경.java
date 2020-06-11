@@ -1,7 +1,7 @@
 class Solution {
-	public static String solution(String m, String[] musicinfos) {
+    public static String solution(String m, String[] musicinfos) {
 		String answer = "(None)";
-
+        int longTime = 0;
 		String[] music = {};
 
 		m = m.replace("C#", "c");
@@ -12,7 +12,6 @@ class Solution {
 		m = m.replace("E#", "e");
 
 		for (String s : musicinfos) {
-			int longTime = 0;
 
 			music = s.split(",");
 
@@ -34,27 +33,29 @@ class Solution {
 
 			String song = "";
 
+			
+			
 			while (true) {
-				for (int i = 0; i < melody.length(); i++) {
-					if (time == song.length()) {
+				for(int i=0; i<melody.length(); i++) {
+					if(time == song.length()){
 						break;
 					}
 					song += Character.toString(melody.charAt(i));
 				}
-				if (time == song.length()) {
+				if(time == song.length()) {
 					break;
 				}
 			}
 
 			if (song.contains(m)) {
 				if (longTime < time) {
-					answer = name;
 					longTime = time;
+					answer = name;
 				}
 			}
 
 		}
 
 		return answer;
-	}
+    }
 }
