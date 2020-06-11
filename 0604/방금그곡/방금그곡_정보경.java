@@ -1,6 +1,6 @@
 class Solution {
-    public String solution(String m, String[] musicinfos) {
-		String answer = "";
+	public static String solution(String m, String[] musicinfos) {
+		String answer = "(None)";
 
 		String[] music = {};
 
@@ -9,8 +9,10 @@ class Solution {
 		m = m.replace("F#", "f");
 		m = m.replace("G#", "g");
 		m = m.replace("A#", "a");
+		m = m.replace("E#", "e");
 
 		for (String s : musicinfos) {
+			int longTime = 0;
 
 			music = s.split(",");
 
@@ -25,6 +27,7 @@ class Solution {
 			melody = melody.replace("F#", "f");
 			melody = melody.replace("G#", "g");
 			melody = melody.replace("A#", "a");
+			melody = melody.replace("E#", "e");
 
 			int hour = Integer.parseInt(end[0]) - Integer.parseInt(start[0]);
 			int time = Integer.parseInt(end[1]) - Integer.parseInt(start[1]) + (hour * 60);
@@ -44,15 +47,14 @@ class Solution {
 			}
 
 			if (song.contains(m)) {
-				answer = name;
-				break;
+				if (longTime < time) {
+					answer = name;
+					longTime = time;
+				}
 			}
 
-			if (answer == "") {
-				answer = "(None)";
-			}
 		}
 
 		return answer;
-    }
+	}
 }
